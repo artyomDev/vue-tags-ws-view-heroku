@@ -2,7 +2,7 @@
 
 ## Backend setup
 
-Before starting this frontend, please visit https://github.com/artyomDev/vue-tags-ws-backend
+Before starting this frontend, please visit https://github.com/artyomDev/vue-tags-ws-backend-postgresql
 
 And download source and set up backend first.
 
