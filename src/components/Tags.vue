@@ -110,7 +110,7 @@
       
       Socket.onmessage = function (evt) { 
         var received_msg = evt.data;
-        console.log(received_msg);
+        // console.log(received_msg);
         var tags = JSON.parse(received_msg);
         self.tags = tags;
       };

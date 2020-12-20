@@ -33,3 +33,13 @@ yarn build
 yarn lint
 ```
 
+
+### Live demo
+
+
+https://artem-vue-tag.herokuapp.com
+
+```
+Thank you
+Artem Medianyk
+```
