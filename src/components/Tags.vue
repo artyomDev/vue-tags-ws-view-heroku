@@ -124,6 +124,8 @@
           $("#addtagname").val("");
           
           Socket.send("get all tags");
+            $(".tag-label").css("border-left", "none");
+            $(".tag-label").css("background-color", "white");
         });
       },
       selectTag(index, color) {
@@ -142,6 +144,8 @@
         $.post(backendurl + "/update", {id: tagid, name: tagname}).then(function(){
           $(".btn-modal-close").click();
           Socket.send("get all tags");
+            $(".tag-label").css("border-left", "none");
+            $(".tag-label").css("background-color", "white");
         });
       },
       deleteTag(tagid) {
@@ -152,6 +156,8 @@
         $.post(backendurl + "/delete", {id: tagid}).then(function(){
           $(".btn-modal-close").click();
           Socket.send("get all tags");
+            $(".tag-label").css("border-left", "none");
+            $(".tag-label").css("background-color", "white");
         });
       }
     }
