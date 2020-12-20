@@ -7,7 +7,7 @@
     <!-- Add tag start -->
     <div class="row add-tag">
       <div class="col col-lg-10 col-md-10 col-sm-8 col-xs-12">
-        <input type="text" class="form-control" placeholder="Add Tag" id="addtagname" />
+        <input type="text" class="form-control" placeholder="Add Tag" id="addtagname" v-on:keyup="addTag" />
       </div>
       <div class="col col-lg-2 col-md-2 col-sm-4 col-xs-12">
         <button class="btn btn-primary" v-on:click="addTag">Add</button>
@@ -116,17 +116,19 @@
       };
     },
     methods: {
-      addTag() {
-        var randomColor = Math.floor(Math.random()*16777215).toString(16);
-        randomColor = "#" + randomColor;
-        var tagname = $("#addtagname").val();
-        $.post(backendurl + "/add", {color: randomColor, name: tagname}).then(function(){
-          $("#addtagname").val("");
-          
-          Socket.send("get all tags");
+      addTag(e) {
+        if(e.type === "click" || (e.type == "keyup" && e.keyCode == 13)) {
+          var randomColor = Math.floor(Math.random()*16777215).toString(16);
+          randomColor = "#" + randomColor;
+          var tagname = $("#addtagname").val();
+          $.post(backendurl + "/add", {color: randomColor, name: tagname}).then(function(){
+            $("#addtagname").val("");
+            
+            Socket.send("get all tags");
             $(".tag-label").css("border-left", "none");
             $(".tag-label").css("background-color", "white");
-        });
+          });
+        }
       },
       selectTag(index, color) {
         $(".tag-label").css("border-left", "none");
@@ -144,8 +146,8 @@
         $.post(backendurl + "/update", {id: tagid, name: tagname}).then(function(){
           $(".btn-modal-close").click();
           Socket.send("get all tags");
-            $(".tag-label").css("border-left", "none");
-            $(".tag-label").css("background-color", "white");
+          $(".tag-label").css("border-left", "none");
+          $(".tag-label").css("background-color", "white");
         });
       },
       deleteTag(tagid) {
@@ -156,8 +158,8 @@
         $.post(backendurl + "/delete", {id: tagid}).then(function(){
           $(".btn-modal-close").click();
           Socket.send("get all tags");
-            $(".tag-label").css("border-left", "none");
-            $(".tag-label").css("background-color", "white");
+          $(".tag-label").css("border-left", "none");
+          $(".tag-label").css("background-color", "white");
         });
       }
     }
